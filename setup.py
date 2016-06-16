@@ -1,6 +1,6 @@
 from setuptools import setup
 
-setup(name='todopy',
+setup(name='pylist',
       version='1.0',
       description='OpenShift App',
       author='Your Name',
