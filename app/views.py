@@ -12,7 +12,7 @@ from app import app
 
 @app.route('/')
 @app.route('/index')
-def index():
+def todolist():
 	con = sql.connect("magedb.db")
 	con.row_factory = sql.Row
 
