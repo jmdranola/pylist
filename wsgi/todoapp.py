@@ -1,14 +1,14 @@
 #!flask/Scripts/python
 
 import os
-from flask import *
+from flask import Flask
 
 import sqlite3
 import sqlite3 as sql
 
 app = Flask(__name__)
 
-conn = sqlite3.connect(os.path.join(os.environ.get('HOME'), 'wsgi/sqlite.db')
+conn = sqlite3.connect(os.path.join(os.environ.get('HOME'), 'wsgi/sqlite.db'))
 
 @app.route('/')
 def todolist():
@@ -26,7 +26,7 @@ def todolist():
 def add():
 	if request.method == 'POST':
 		try:
-			con = sql.connect(os.path.join(os.environ.get('HOME'), 'wsgi/sqlite.db')
+			con = sql.connect(os.path.join(os.environ.get('HOME'), 'wsgi/sqlite.db'))
 			con.row_factory = sql.Row
 
 			cur = con.cursor()
@@ -38,7 +38,7 @@ def add():
 			print task #check if user input reaches python
 
 			try:
-				with sql.connect(os.path.join(os.environ.get('HOME'), 'wsgi/sqlite.db') as con:
+				with sql.connect(os.path.join(os.environ.get('HOME'), 'wsgi/sqlite.db')) as con:
 					cur = con.cursor()
 					cur.execute("INSERT INTO tasks (task) VALUES (?)",(task,))
 					con.commit()
@@ -56,7 +56,7 @@ def add():
 def edit():
 	if request.method == 'POST':
 		try:
-			con = sql.connect(os.path.join(os.environ.get('HOME'), 'wsgi/sqlite.db')
+			con = sql.connect(os.path.join(os.environ.get('HOME'), 'wsgi/sqlite.db'))
 			con.row_factory = sql.Row
 
 			cur = con.cursor()
@@ -67,7 +67,7 @@ def edit():
 			replaceItem = request.form['todo'];
 
 			try:
-				with sql.connect("magedb.db") as con:
+				with sql.connect(os.path.join(os.environ.get('HOME'), 'wsgi/sqlite.db')) as con:
 					cur = con.cursor()
 					cur.execute("UPDATE tasks SET  task = ? WHERE id = ?", (replaceItem))
 					con.commit()
@@ -85,7 +85,7 @@ def edit():
 def delete():
 	if request.method == 'POST':
 		try:
-			con = sql.connect(os.path.join(os.environ.get('HOME'), 'wsgi/sqlite.db')
+			con = sql.connect(os.path.join(os.environ.get('HOME'), 'wsgi/sqlite.db'))
 			con.row_factory = sql.Row
 
 			cur = con.cursor()
@@ -96,7 +96,7 @@ def delete():
 			id = request.form['id']
 
 			try:
-				with sql.connect(os.path.join(os.environ.get('HOME'), 'wsgi/sqlite.db') as con:
+				with sql.connect(os.path.join(os.environ.get('HOME'), 'wsgi/sqlite.db')) as con:
 					cur = con.cursor()
 					cur.execute("DELETE FROM tasks  WHERE id = (?)", (id,))
 					con.commit()
