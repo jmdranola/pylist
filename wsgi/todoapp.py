@@ -2,16 +2,12 @@
 
 import os
 from flask import *
-from flask.ext.sqlalchemy import SQLAlchemy
 
 
 import sqlite3
 import sqlite3 as sql
 
 app = Flask(__name__)
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////data/magedb.db'
-db = SQLAlchemy(app)
 
 #conn = sqlite3.connect(os.path.join(os.environ.get('OPENSHIFT_DATA_DIR'), 'magedb.db'))
 
@@ -120,5 +116,4 @@ def readme():
 	return render_template("readme.html")
 
 if __name__ == "__main__":
-	app.debug = True
 	app.run()
