@@ -9,4 +9,4 @@ try:
 except IOError:
     pass
  
-from app import app as application
+from todoapp import app as application
