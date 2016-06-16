@@ -11,6 +11,7 @@ app = Flask(__name__)
 #conn = sqlite3.connect('magedb.db')
 
 @app.route('/')
+@app.route('/index')
 def todolist():
 	con = sql.connect("magedb.db")
 	con.row_factory = sql.Row
