@@ -1,4 +1,4 @@
-#!flask/Scripts/python
+
 from app import app
 import os
 from flask import *
@@ -6,13 +6,13 @@ from flask import *
 import sqlite3
 import sqlite3 as sql
 
-app = Flask(__name__)
+#app = Flask(__name__)
 
 #conn = sqlite3.connect('magedb.db')
 
 @app.route('/')
 @app.route('/index')
-def todolist():
+def index():
 	con = sql.connect("magedb.db")
 	con.row_factory = sql.Row
 
