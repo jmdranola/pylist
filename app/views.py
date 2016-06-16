@@ -5,7 +5,7 @@ from flask import *
 
 import sqlite3
 import sqlite3 as sql
-#from app import app
+from app import app
 
 
 #app = Flask(__name__)
