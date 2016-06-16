@@ -6,6 +6,7 @@ from flask import *
 import sqlite3
 import sqlite3 as sql
 
+
 app = Flask(__name__)
 
 conn = sqlite3.connect('magedb.db')
