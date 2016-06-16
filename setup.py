@@ -15,6 +15,6 @@ DATABASE_PATH = os.path.join(BASE_DIR, 'magedb.db')
 
 DATABASES = {
     'default': {
-        'NAME': DATABASE_PATH,
+        'NAME': DATABASE_PATH
     }
 }
