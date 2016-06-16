@@ -12,7 +12,7 @@ conn = sqlite3.connect(os.path.join(os.environ.get('OPENSHIFT_DATA_DIR'), 'maged
 
 @app.route('/')
 def todolist():
-	con = sql.connect("magedb.db")
+	con = sql.connect(os.path.join(os.environ.get('OPENSHIFT_DATA_DIR'), 'magedb.db'))
 	con.row_factory = sql.Row
 
 	cur = con.cursor()
