@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	 	<meta charset="utf-8">
+	 	<title>To-Do List | Python Practice No. 3</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- Loading page icon -->
+		<link rel="shortcut icon" href="static/img/favicon.ico">
+
+		<!-- Loading stylesheet -->
+		<link href="static/css/style.css" rel="stylesheet">
+
+		<!-- Loading Bootstrap -->		
+		<link href="static/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+		<!-- Loading Flat UI -->
+		<link href="static/css/flat-ui.min.css" rel="stylesheet">
+		<link href="static/css/style.css" rel="stylesheet">
+
+		<!-- Loading External stylesheets -->
+		<!--link href="http://html5demos.com/css/html5demos.css" rel="stylesheet"-->
+
+		<!-- Loading External scripts -->
+		<script src="http://html5demos.com/js/h5utils.js"></script>
+	</head>
+	<body>
+		<br/>
+ 		<div class="container">		
+			<div class="col-xs-3"></div>
+			<div class="col-xs-6" style="background: white">
+				<center>
+					<h1 class="full-block" style="word-wrap:break-word;">TO-DO LIST</h1>
+				</center>
+				<form action="/add" method="POST" id="form-add-todo" class="form-add-todo" role="form">
+		    		<!--label for="todo"></label-->
+		    		<div class="input-group">
+		    			<input type="text" id="new-todo-item"  class="form-control new-todo-item" name="todo" placeholder="What are you doing today?">
+		    				<span class="input-group-btn">
+								<button type="submit" id="add-todo-item" class="btn add-todo-item">
+					  				<span class="fui-plus"></span>
+					  			</button>
+			 				</span>
+		 			</div>
+		  		</form>
+	  			<table width=100% id="todo-list" class="todo-list">
+	  				{% for row in rows %}
+                        <tr>
+                            <td>
+                                <label class="checkbox">
+                                    <input type="checkbox" data-toggle="checkbox" name="todo-item-done" class="custom-checkbox todo-item-done" id="checkbox">
+                                    <span class="icons">
+                                        <span class="icon-unchecked"></span>
+                                        <span class="icon-checked"></span>
+                                    </span>
+                                    <span class="todo-text"></span>
+                                    <span id ="edit">
+                                        <a>{{row["task"]}}</a>
+                                    </span>
+                            </td>
+                            <td align="right">
+	                            	<button class="btn btn-xs btn-info">
+	                            		<span class="fui-new"></span>
+	                                </button><button id="delete-todo-item" class="btn btn-xs btn-danger todo-item-delete">
+	                                	<span class="fui-cross"></span>
+	                                </button>
+                                </label>
+                            </td>
+                        </tr>
+                    {% endfor %}
+		  			<!-- To-Do List input appears here -->
+				</table>
+				<center>
+					<p class="palette-paragraph">
+						<strong>
+							Need help? <a href="/readme" >READ ME</a>
+						</strong>
+					</p>
+				</center>
+  			</div>
+  			<div class="col-xs-3"></div>		
+ 		</div><!-- /.container -->
+	 	<div class="container">
+	 		<footer>
+		    	<center>		    		
+		    		<small>
+		    			created and developed by <a href="https://mage-isdcs.slack.com" target="_blank">mage-isdcs</a>
+		    		</small>
+		    	</center>  	
+		  	</footer>
+		</div>
+	</body>
+	<!-- jQuery (necessary for Flat UI's JavaScript plugins) -->
+	<script src="static/js/vendor/jquery.min.js"></script>
+
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="static/js/vendor/video.js"></script>
+	<script src="static/js/flat-ui.min.js"></script>
+
+	<!-- Loading external scripts -->
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script type="javascript">
+		$(':checkbox').radiocheck();
+	</script>
+	<!--script>
+	var editable = document.getElementById('editable');
+
+	addEvent(editable, 'blur', function () {
+	  // lame that we're hooking the blur event
+	  localStorage.setItem('contenteditable', this.innerHTML);
+	  document.designMode = 'off';
+	});
+
+	addEvent(editable, 'focus', function () {
+	  document.designMode = 'on';
+	});
+	</script-->
+	<script type="text/javascript">
+		function addTodoItem() {
+			var todoItem = $("#new-todo-item").val();
+		        $.ajax({
+		            url: '/add',
+		            data: $('form').serialize(),
+		            type: 'POST',
+		            success: function(response) {
+		                console.log(response);
+		            },
+		            error: function(error) {
+		                console.log(error);
+		            }
+		        });
+		   	$("#todo-list").append("<tr>" +
+			  		"<td>" +
+			  			"<label class=\"checkbox\">" +
+			  				"<input type=\"checkbox\" data-toggle=\"checkbox\" name=\"todo-item-done\" class=\"custom-checkbox todo-item-done\" id=\"checkbox\" value=\"" + todoItem + "\"/>" +
+							"<span class=\"icons\">" +
+								"<span class=\"icon-unchecked\"></span>" +
+								"<span class=\"icon-checked\"></span>" +
+							"</span>" +
+							"<span class=\"todo-text\"></span>" +
+							"<span id =\"edit\"><a>" + todoItem + "</a></span>" +
+			  		"</td>" +
+			  		"<td align=\"right\">" +
+			  			"<button class=\"btn btn-xs btn-info\">" +
+			  				"<span class=\"fui-new\"></span>" +
+			  			"</button>" +
+			  			"<button id=\"delete-todo-item\" class=\"btn btn-xs btn-danger todo-item-delete\">" +
+			  				"<span class=\"fui-cross\"></span>" +
+			  			"</button>" +
+			  			"</label>" +
+			  		"</td>" +
+		  		"</tr>");
+		  $("#new-todo-item").val("");
+		}
+
+		function deleteTodoItem(e, item) {
+		  	$("#delete-todo-item").val();
+		  	/*
+	        $.ajax({
+	            url: '/delete',
+	            data: $('button').serialize(),
+	            type: 'POST',
+	            success: function(response) {
+	                console.log(response);
+	            },
+	            error: function(error) {
+	                console.log(error);
+	            }
+	        });
+		    */  
+		  	e.preventDefault();
+		  	$(item).closest("tr").fadeOut('slow', function() { 
+		    	$(item).closest("tr").remove();
+		  	});
+		}
+
+		function completeTodoItem() {  
+		  $(this).parent().toggleClass("strike");
+		}
+
+		$(function() {		 
+		   $("#add-todo-item").on('click', function(e){
+		     e.preventDefault();
+		     addTodoItem()
+		   });
+
+		  $("#todo-list").on('click', '.todo-item-delete', function(e){
+		    var item = this; 
+		    deleteTodoItem(e, item)
+		  })
+		  
+		  $(document).on('click', ".todo-item-done", completeTodoItem)
+		});
+	</script>
+</html>
