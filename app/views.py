@@ -115,5 +115,5 @@ def delete():
 def readme():
 	return render_template("readme.html")
 
-if __name__ == "__main__":
-    app.run()
+# if __name__ == "__main__":
+#     app.run()
