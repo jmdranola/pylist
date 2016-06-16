@@ -7,4 +7,4 @@ if __name__ == '__main__':
 	app.run()
 
 
-from app import run
+from app import views
