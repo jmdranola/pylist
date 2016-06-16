@@ -22,7 +22,7 @@ def todolist():
 	# cur.execute("SELECT * FROM tasks ORDER BY id")
 
 	# rows = cur.fetchall();
-	return render_template('todolist.html', rows=rows)
+	return render_template('todolist.html')
 
 #Insert user input into database
 @app.route('/add', methods=['POST', 'GET'])
