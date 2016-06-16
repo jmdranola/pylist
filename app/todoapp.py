@@ -2,7 +2,7 @@
 
 import os
 from flask import *
-
+from app import app
 import sqlite3
 import sqlite3 as sql
 
