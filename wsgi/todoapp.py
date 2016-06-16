@@ -3,17 +3,16 @@
 import os
 from flask import *
 
-
 import sqlite3
 import sqlite3 as sql
 
 app = Flask(__name__)
 
-#conn = sqlite3.connect(os.path.join(os.environ.get('OPENSHIFT_DATA_DIR'), 'magedb.db'))
+#conn = sqlite3.connect('magedb.db')
 
 @app.route('/')
 def todolist():
-	con = sql.connect(os.path.join(os.environ.get('OPENSHIFT_DATA_DIR'), 'magedb.db'))
+	con = sql.connect("magedb.db")
 	con.row_factory = sql.Row
 
 	cur = con.cursor()
@@ -27,7 +26,7 @@ def todolist():
 def add():
 	if request.method == 'POST':
 		try:
-			con = sql.connect(os.path.join(os.environ.get('OPENSHIFT_DATA_DIR'), 'magedb.db'))
+			con = sql.connect("magedb.db")
 			con.row_factory = sql.Row
 
 			cur = con.cursor()
@@ -39,7 +38,7 @@ def add():
 			print task #check if user input reaches python
 
 			try:
-				with sql.connect(os.path.join(os.environ.get('OPENSHIFT_DATA_DIR'), 'magedb.db')) as con:
+				with sql.connect("magedb.db") as con:
 					cur = con.cursor()
 					cur.execute("INSERT INTO tasks (task) VALUES (?)",(task,))
 					con.commit()
@@ -57,7 +56,7 @@ def add():
 def edit():
 	if request.method == 'POST':
 		try:
-			con = sql.connect(os.path.join(os.environ.get('OPENSHIFT_DATA_DIR'), 'magedb.db'))
+			con = sql.connect("magedb.db")
 			con.row_factory = sql.Row
 
 			cur = con.cursor()
@@ -68,7 +67,7 @@ def edit():
 			replaceItem = request.form['todo'];
 
 			try:
-				with sql.connect(os.path.join(os.environ.get('OPENSHIFT_DATA_DIR'), 'magedb.db')) as con:
+				with sql.connect("magedb.db") as con:
 					cur = con.cursor()
 					cur.execute("UPDATE tasks SET  task = ? WHERE id = ?", (replaceItem))
 					con.commit()
@@ -86,7 +85,7 @@ def edit():
 def delete():
 	if request.method == 'POST':
 		try:
-			con = sql.connect(os.path.join(os.environ.get('OPENSHIFT_DATA_DIR'), 'magedb.db'))
+			con = sql.connect("magedb.db")
 			con.row_factory = sql.Row
 
 			cur = con.cursor()
@@ -97,7 +96,7 @@ def delete():
 			id = request.form['id']
 
 			try:
-				with sql.connect(os.path.join(os.environ.get('OPENSHIFT_DATA_DIR'), 'magedb.db')) as con:
+				with sql.connect("magedb.db") as con:
 					cur = con.cursor()
 					cur.execute("DELETE FROM tasks  WHERE id = (?)", (id,))
 					con.commit()
@@ -116,4 +115,4 @@ def readme():
 	return render_template("readme.html")
 
 if __name__ == "__main__":
-	app.run()
+    app.run()
