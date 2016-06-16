@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def todolist():
-	con = sql.connect("magedb.db")
+	con = sql.connect('magedb.db')
 	con.row_factory = sql.Row
 
 	cur = con.cursor()
