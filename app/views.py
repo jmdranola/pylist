@@ -11,7 +11,7 @@ from app import app
 #conn = sqlite3.connect('magedb.db')
 
 @app.route('/')
-@app.route('index')
+@app.route('/index')
 def index():
 	con = sql.connect("magedb.db")
 	con.row_factory = sql.Row
