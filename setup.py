@@ -17,3 +17,4 @@ DATABASES = {
     'default': {
         'NAME': DATABASE_PATH,
     }
+}
