@@ -9,4 +9,4 @@ try:
 except IOError:
     pass
  
-from pylist import app as application
+from todopy import app as application
