@@ -7,7 +7,7 @@ import sqlite3
 import sqlite3 as sql
 #from app import app
 
-app = Flask(__name__)
+
 #app = Flask(__name__)
 
 #conn = sqlite3.connect('magedb.db')
@@ -117,5 +117,5 @@ def delete():
 def readme():
 	return render_template("readme.html")
 
-if __name__ == "__main__":
-    app.run()
+# if __name__ == "__main__":
+#     app.run()
