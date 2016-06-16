@@ -11,7 +11,7 @@ import sqlite3 as sql
 #conn = sqlite3.connect('magedb.db')
 
 @app.route('/')
-def todolist():
+def index():
 	con = sql.connect("magedb.db")
 	con.row_factory = sql.Row
 
