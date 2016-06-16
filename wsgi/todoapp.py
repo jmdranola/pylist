@@ -8,7 +8,7 @@ import sqlite3 as sql
 
 app = Flask(__name__)
 
-conn = sqlite3.connect(os.path.join(os.environ('OPENSHIFT_DATA_DIR'), 'magedb.db'))
+conn = sqlite.connect(os.path.join(os.environ('OPENSHIFT_DATA_DIR'), 'magedb.db'))
 
 @app.route('/')
 def todolist():
