@@ -9,7 +9,7 @@ import sqlite3 as sql
 
 app = Flask(__name__)
 
-conn = sqlite3.connect('C:\python-todo\pylist\magedb.db')
+conn = sqlite3.connect('sqlite:C:\python-todo\pylistmagedb.db')
 
 @app.route('/')
 def todolist():
