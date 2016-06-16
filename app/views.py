@@ -15,14 +15,14 @@ from app import app
 @app.route('/')
 @app.route('/todolist')
 def todolist():
-	# con = sql.connect("magedb.db")
-	# con.row_factory = sql.Row
+	con = sql.connect("magedb.db")
+	con.row_factory = sql.Row
 
-	# cur = con.cursor()
-	# cur.execute("SELECT * FROM tasks ORDER BY id")
+	cur = con.cursor()
+	cur.execute("SELECT * FROM tasks ORDER BY id")
 
-	# rows = cur.fetchall();
-	return render_template('todolist.html')
+	rows = cur.fetchall();
+	return render_template('todolist.html', rows=rows)
 
 #Insert user input into database
 @app.route('/add', methods=['POST', 'GET'])
