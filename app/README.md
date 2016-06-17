@@ -14,7 +14,7 @@ A simple web application of To Do List using Python.
 <br>
 <br>
 For the live demo: (Deployment)<br>
-<i>Soon</i>
+<i>http://jonaranola.pythonanywhere.com/todolist</i>
 <br>
 <br>
 <b>Members</b><br>
@@ -27,3 +27,7 @@ Ranola, Jona Marie<br>
 <p><b>Update No. 1: </b> <br>Function like add has been added in the application with the use of python and HTML. - June 13, 2016</p>
 <p><b>Update No. 2: </b><br>1. Function like add has been added in the application with the use of python, JQUERY AJAX, SQL, and HTML. - June 15, 2016
 <br>2. Minor Changes: - Fixed link to readme.html from todolist.html & vice versa - June 15, 2016</p>
+<p><b>Update No. 3: </b><br>1. Major changes: Edit task(s) and Delete a certain row of task - June 16, 2016 - June 17, 2016
+<br>2. Validations:- Saving an empty input (null or "") wouldn't be saved into the database - June 17, 2016
+<br>3. Minor changes:- Fixed bugs - June 17, 2016
+</p>

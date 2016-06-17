@@ -46,26 +46,74 @@
 	  			<table width=100% id="todo-list" class="todo-list">
 	  				{% for row in rows %}
                         <tr>
-                            <td>
-                                <label class="checkbox">
-                                    <input type="checkbox" data-toggle="checkbox" name="todo-item-done" class="custom-checkbox todo-item-done" id="checkbox">
+                        	<td>
+                            	<label class="checkbox">
+                            		<input type="checkbox" data-toggle="checkbox" name="todo-item-done" class="custom-checkbox todo-item-done" id="checkbox">
                                     <span class="icons">
                                         <span class="icon-unchecked"></span>
                                         <span class="icon-checked"></span>
                                     </span>
                                     <span class="todo-text"></span>
                                     <span id ="edit">
+	                                    <a style="font-size: 0px;">{{row["id"]}}</a>
                                         <a>{{row["task"]}}</a>
                                     </span>
                             </td>
                             <td align="right">
-	                            	<button class="btn btn-xs btn-info">
-	                            		<span class="fui-new"></span>
-	                                </button><button id="delete-todo-item" class="btn btn-xs btn-danger todo-item-delete">
-	                                	<span class="fui-cross"></span>
+	                                <button type="button" class="btn btn-xs btn-info" data-toggle="modal" data-target="#myModal">
+	                                	<span class="fui-new"></span>
 	                                </button>
-                                </label>
-                            </td>
+	                                <center>
+										<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  											<div class="modal-dialog" role="document">
+    											<div class="modal-content">
+      												<div class="modal-header">
+        												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        												<h4 class="modal-title" id="myModalLabel"></h4>
+      												</div>
+      											<div class="modal-body">
+
+      											</div>
+      											<div class="modal-footer">
+      												<form action="/edit" method="POST">							        
+														<button type="submit" id="edit-todo-item" class="btn btn-success todo-item-edit" data-dismiss="modal">
+						                                	SAVE
+					                                	</button>
+				                                	</form>
+      											</div>
+      										</div>
+      									</div>
+      								</div>
+
+									<!-- the partial container -->
+
+									<div class="thehide" id="partial_container">
+										<form action="/edit" method="POST">	
+    										<fieldset>
+      											<div class="container-fluid">
+        											<div class="row">
+          												<div class="col-sm-12">
+            												<div class="form-group">
+            													<input type="hidden" class="form-control" id="edit-todo-item" name="editID" />
+            													<input type="text" class="form-control" id="edit-todo-item" name="editTask" />
+            												</div>
+          												</div>
+        											</div>
+      											</div>
+    										</fieldset>
+    										<div class="divider"></div>
+    									</form>
+ 									</div>
+								</center>
+	                        </td>
+	                        <td align="right" width="30px">
+	                                <form action="/delete/{{ row.id }}" method="POST">
+										<button type="submit" id="delete-todo-item" class="btn btn-xs btn-danger todo-item-delete">
+		                                	<span class="fui-cross"></span>
+	                                	</button>
+	                                </form>
+	                            </label>
+	                        </td>    
                         </tr>
                     {% endfor %}
 		  			<!-- To-Do List input appears here -->
@@ -99,36 +147,24 @@
 
 	<!-- Loading external scripts -->
 	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-	<script type="javascript">
+	<script type="text/javascript">
 		$(':checkbox').radiocheck();
 	</script>
-	<!--script>
-	var editable = document.getElementById('editable');
-
-	addEvent(editable, 'blur', function () {
-	  // lame that we're hooking the blur event
-	  localStorage.setItem('contenteditable', this.innerHTML);
-	  document.designMode = 'off';
-	});
-
-	addEvent(editable, 'focus', function () {
-	  document.designMode = 'on';
-	});
-	</script-->
 	<script type="text/javascript">
 		function addTodoItem() {
 			var todoItem = $("#new-todo-item").val();
-		        $.ajax({
-		            url: '/add',
-		            data: $('form').serialize(),
-		            type: 'POST',
-		            success: function(response) {
-		                console.log(response);
-		            },
-		            error: function(error) {
-		                console.log(error);
-		            }
-		        });
+	        $.ajax({
+	            url: '/add',
+	            data: $('form').serialize(),
+	            type: 'POST',
+	            success: function(response) {
+	                console.log(response);
+	            },
+	            error: function(error) {
+	                console.log(error);
+	            }
+	        });
+
 		   	$("#todo-list").append("<tr>" +
 			  		"<td>" +
 			  			"<label class=\"checkbox\">" +
@@ -141,37 +177,42 @@
 							"<span id =\"edit\"><a>" + todoItem + "</a></span>" +
 			  		"</td>" +
 			  		"<td align=\"right\">" +
-			  			"<button class=\"btn btn-xs btn-info\">" +
-			  				"<span class=\"fui-new\"></span>" +
+			  			"<button type=\"button\" class=\"btn btn-xs btn-info\" data-toggle=\"modal\" data-target=\"#myModal\">" +
+                        	"<span class=\"fui-new\"></span>" +
 			  			"</button>" +
-			  			"<button id=\"delete-todo-item\" class=\"btn btn-xs btn-danger todo-item-delete\">" +
-			  				"<span class=\"fui-cross\"></span>" +
-			  			"</button>" +
+			  		"</td>" +
+			  		"<td align=\"right\" width=\"30px\">" +
+			  			"<form action=\"/delete/<postID>\" method=\"POST\">" +
+							"<button type=\"submit\" id=\"delete-todo-item\" class=\"btn btn-xs btn-danger todo-item-delete\">" +
+	                        	"<span class=\"fui-cross\"></span>" +
+	                    	"</button>" +
+	                    "</form>" +
 			  			"</label>" +
 			  		"</td>" +
 		  		"</tr>");
 		  $("#new-todo-item").val("");
 		}
 
+		function editTodoItem() {
+			$(item).closest("tr").fadeOut('slow', function() {
+		    	$("#edit-todo-item").click(function() {
+				    var form = $('<form action="/edit" method="POST"></form>');
+					form.submit();
+				});
+		  	})
+		}
+
 		function deleteTodoItem(e, item) {
-		  	$("#delete-todo-item").val();
-		  	/*
-	        $.ajax({
-	            url: '/delete',
-	            data: $('button').serialize(),
-	            type: 'POST',
-	            success: function(response) {
-	                console.log(response);
-	            },
-	            error: function(error) {
-	                console.log(error);
-	            }
-	        });
-		    */  
-		  	e.preventDefault();
+			$("#delete-todo-item").val();
+
+		  	//e.preventDefault();
 		  	$(item).closest("tr").fadeOut('slow', function() { 
 		    	$(item).closest("tr").remove();
-		  	});
+		    	$("#delete-todo-item").click(function() {
+			        var form = $('<form action="/delete/' + this.dataset.id + '" method="POST"></form>');
+			        form.submit();
+			    });
+		  	})		  	
 		}
 
 		function completeTodoItem() {  
@@ -179,17 +220,28 @@
 		}
 
 		$(function() {		 
-		   $("#add-todo-item").on('click', function(e){
-		     e.preventDefault();
-		     addTodoItem()
-		   });
+			$("#add-todo-item").on('click', function(e){
+			    e.preventDefault();
+			    addTodoItem()
+			});
 
-		  $("#todo-list").on('click', '.todo-item-delete', function(e){
-		    var item = this; 
-		    deleteTodoItem(e, item)
-		  })
-		  
-		  $(document).on('click', ".todo-item-done", completeTodoItem)
+			$("#todo-list").on('click', '.todo-item-delete', function(e){
+			   var item = this; 
+			   deleteTodoItem(e, item)
+			})
+			
+			$(document).on('click', ".todo-item-done", completeTodoItem)
+		});
+
+		$(document).ready(function(){
+  			$(".thehide").hide();
+  			$(document).on("click", "table button", function(){
+			    $("#trigger_modal").trigger("click");
+			    $("#myModal .modal-title").html("Edit Task");
+			    $("#myModal .modal-body").html($("#partial_container").html());
+			    $('#myModal input[name="editID"]').val($(this).closest("tr").find("a:nth-child(1)").text());
+			    $('#myModal input[name="editTask"]').val($(this).closest("tr").find("a:nth-child(2)").text());
+	  		});  
 		});
 	</script>
 </html>

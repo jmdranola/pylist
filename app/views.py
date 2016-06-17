@@ -1,21 +1,21 @@
 
-
 import os
 from flask import *
 
 import sqlite3
 import sqlite3 as sql
+
+
 from app import app
 
 
 #app = Flask(__name__)
 
-#conn = sqlite3.connect('magedb.db')
+conn = sqlite3.connect('/home/jonaranola/mysite/pylist/app/magedb.db')
 
 @app.route('/')
-@app.route('/todolist')
 def todolist():
-	con = sql.connect("magedb.db")
+	con = sql.connect('/home/jonaranola/mysite/pylist/app/magedb.db')
 	con.row_factory = sql.Row
 
 	cur = con.cursor()
@@ -24,12 +24,11 @@ def todolist():
 	rows = cur.fetchall();
 	return render_template('todolist.html', rows=rows)
 
-#Insert user input into database
 @app.route('/add', methods=['POST', 'GET'])
 def add():
 	if request.method == 'POST':
 		try:
-			con = sql.connect("magedb.db")
+			con = sql.connect('/home/jonaranola/mysite/pylist/app/magedb.db')
 			con.row_factory = sql.Row
 
 			cur = con.cursor()
@@ -41,7 +40,7 @@ def add():
 			print task #check if user input reaches python
 
 			try:
-				with sql.connect("magedb.db") as con:
+				with sql.connect('/home/jonaranola/mysite/pylist/app/magedb.db') as con:
 					cur = con.cursor()
 					cur.execute("INSERT INTO tasks (task) VALUES (?)",(task,))
 					con.commit()
@@ -50,7 +49,7 @@ def add():
 			except:
 				con.rollback()
 	        	msg = "error in insert operation"
-         		
+
 		finally:
 			return render_template("todolist.html", msg = msg, rows=rows)
          	con.close()
@@ -59,7 +58,7 @@ def add():
 def edit():
 	if request.method == 'POST':
 		try:
-			con = sql.connect("magedb.db")
+			con = sql.connect('/home/jonaranola/mysite/pylist/app/magedb.db')
 			con.row_factory = sql.Row
 
 			cur = con.cursor()
@@ -67,28 +66,32 @@ def edit():
 
 			rows = cur.fetchall();
 
-			replaceItem = request.form['todo'];
+			editID = request.form['editID'];
+			print editID
+			replaceItem = request.form['editTask'];
+			print replaceItem
 
-			try:
-				with sql.connect("magedb.db") as con:
-					cur = con.cursor()
-					cur.execute("UPDATE tasks SET  task = ? WHERE id = ?", (replaceItem))
-					con.commit()
-					msg = "Record successfully updated"
+			if replaceItem != "":
 
-			except:
-				con.rollback()
-	        	msg = "error in update operation"
-         		
+				try:
+					with sql.connect('/home/jonaranola/mysite/pylist/app/magedb.db') as con:
+						cur = con.cursor()
+						cur.execute("UPDATE tasks SET task = (?) WHERE id = (?)", (replaceItem, editID,))
+						con.commit()
+						msg = "Record successfully updated"
+
+				except:
+					con.rollback()
+		        	msg = "error in update operation"
+
 		finally:
-			return render_template("todolist.html", msg = msg, rows=rows)
-         	con.close()
+			return redirect("/")
 
-@app.route('/delete', methods=['POST', 'GET'])
-def delete():
+@app.route('/delete/<postID>', methods=['POST', 'GET'])
+def delete(postID):
 	if request.method == 'POST':
 		try:
-			con = sql.connect("magedb.db")
+			con = sql.connect('/home/jonaranola/mysite/pylist/app/magedb.db')
 			con.row_factory = sql.Row
 
 			cur = con.cursor()
@@ -96,22 +99,19 @@ def delete():
 
 			rows = cur.fetchall();
 
-			id = request.form['id']
-
 			try:
-				with sql.connect("magedb.db") as con:
+				with sql.connect('/home/jonaranola/mysite/pylist/app/magedb.db') as con:
 					cur = con.cursor()
-					cur.execute("DELETE FROM tasks  WHERE id = (?)", (id,))
+					cur.execute("DELETE FROM tasks WHERE id = (?)", [postID])
 					con.commit()
 					msg = "Record successfully deleted"
 
 			except:
 				con.rollback()
 	        	msg = "error in delete operation"
-         		
+
 		finally:
-			return render_template("todolist.html", rows = rows)
-         	con.close()
+			return redirect("/")
 
 @app.route('/readme')
 def readme():
