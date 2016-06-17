@@ -6,6 +6,7 @@
 <br>
 A simple web application of To Do List using Python.
 <br>
+<br>
 <b>Modules Included: </b>
 <p>We have used Python, Flask and SQLite for the database.</p>
 <br>
