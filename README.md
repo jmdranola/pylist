@@ -37,3 +37,5 @@ For the live demo: (Deployment)<br>
 <br>2. Validations:- Saving an empty input (null or "") wouldn't be saved into the database - June 17, 2016
 <br>3. Minor changes:- Fixed bugs - June 17, 2016
 </p>
+<p>Pending Tasks: </p>
+<p><b>No. 1: </b> <br> Checklist</p>
