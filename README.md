@@ -8,7 +8,7 @@ A simple web application of To Do List using Python.
 <br>
 <br>
 <b>Modules Included: </b>
-<p>We have used Python, Flask and SQLite for the database.</p>
+<p>We have used Python, Flask, JQUERY AJAX and SQLite for the database.</p>
 <br>
 <br>
 For the live demo: (Deployment)<br>
@@ -17,10 +17,10 @@ For the live demo: (Deployment)<br>
 <br>
 <b>TEAM MEMBERS</b><br>
 <p><b>Abad, Gel</b> 
-<br> Back End Developer - specific tasks include python to html integration and vice versa
+<br> Back End Developer - specific tasks include python to html integration and vice versa for adding, editing and deleting of tasks
 <br> Quality Engineer</p>
 <p><b>Biado, Diosa Bianca</b> 
-<br> Back End Developer - specific tasks include python, jquery, html and database integration
+<br> Back End Developer - specific tasks include python, jquery, html and database integration for adding, editing and deleting of tasks
 <br> Front End Developer - the use of Designmodo Flat UI framework, insertion of templates</p>
 <p><b>Ortega, Gerald</b> 
 <br> Back End Developer - specific tasks include python, PHP framework, mysql database and html integration for testing
