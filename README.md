@@ -14,7 +14,7 @@ A simple web application of To Do List using Python.
 <br>
 <br>
 For the live demo: (Deployment)<br>
-<i>http://jonaranola.pythonanywhere.com/todolist</i>
+<i>http://jonaranola.pythonanywhere.com/</i>
 <br>
 <br>
 <b>Members</b><br>
