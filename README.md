@@ -1,13 +1,10 @@
 # todopy
+<b>Title</b>
+<p><b>To Do List : Web Application using Python </b></p>
 <b><i>Status: Under Development</i></b>
 <p>Updates will be posted in the readme section.</p>
 <br>
 A simple web application of To Do List using Python.
-<br>
-<br>
-<b>Title</b>
-<p><b>To Do List : Web Application using Python </b></p>
-<br>
 <br>
 <b>Modules Included: </b>
 <p>We have used Python, Flask and SQLite for the database.</p>
@@ -17,11 +14,19 @@ For the live demo: (Deployment)<br>
 <i>http://jonaranola.pythonanywhere.com/</i>
 <br>
 <br>
-<b>Members</b><br>
-Abad, Gel <br>
-Biado, Diosa Bianca<br>
-Ortega, Gerald<br>
-Ranola, Jona Marie<br>
+<b>TEAM MEMBERS</b><br>
+<p><b>Abad, Gel</b> 
+<br> Back End Developer - specific tasks include python to html integration and vice versa
+<br> Quality Engineer</p>
+<p><b>Biado, Diosa Bianca</b> 
+<br> Back End Developer - specific tasks include python, jquery, html and database integration
+<br> Front End Developer - the use of Designmodo Flat UI framework, insertion of templates</p>
+<p><b>Ortega, Gerald</b> 
+<br> Back End Developer - specific tasks include python, PHP framework, mysql database and html integration for testing
+<br> Quality Engineer</p>
+<p><b>Ranola, Jona Marie</b> 
+<br> Responsible for committing changes on the github, and for the deployment
+<br> Also tested the use of python to html without database for editing, deleting of tasks</p>
 <hr />
 <p>UPDATES</p>
 <p><b>Update No. 1: </b> <br>Function like add has been added in the application with the use of python and HTML. - June 13, 2016</p>
