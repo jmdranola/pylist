@@ -36,6 +36,6 @@ For the live demo: (Deployment)<br>
 <p><b>Update No. 3: </b><br>1. Major changes: Edit task(s) and Delete a certain row of task - June 16, 2016 - June 17, 2016
 <br>2. Validations:- Saving an empty input (null or "") wouldn't be saved into the database - June 17, 2016
 <br>3. Minor changes:- Fixed bugs - June 17, 2016
+<br>4. Minor changes:- Fixed bugs - Removed non-functioning "SAVE" button from edit modal, pressing enter will save the textbox data - June 20, 2016
 </p>
-<p>Pending Tasks: </p>
-<p><b>No. 1: </b> <br> Checklist</p>
+
