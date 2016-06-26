@@ -75,11 +75,6 @@
 
       											</div>
       											<div class="modal-footer">
-      												<form action="/edit" method="POST">							        
-														<button type="submit" id="edit-todo-item" class="btn btn-success todo-item-edit" data-dismiss="modal">
-						                                	SAVE
-					                                	</button>
-				                                	</form>
       											</div>
       										</div>
       									</div>
@@ -93,15 +88,19 @@
       											<div class="container-fluid">
         											<div class="row">
           												<div class="col-sm-12">
-            												<div class="form-group">
-            													<input type="hidden" class="form-control" id="edit-todo-item" name="editID" />
-            													<input type="text" class="form-control" id="edit-todo-item" name="editTask" />
-            												</div>
+            													<input type="hidden" class="form-control" id="edit-todo-item" name="editID" />            													
+            												<div class="input-group">
+												    			<input type="text" class="form-control" id="edit-todo-item" name="editTask" />
+												    				<span class="input-group-btn">
+																		<button type="submit" id="add-todo-item" class="btn add-todo-item">
+															  				press <b>ENTER</b> to save
+															  			</button>
+													 				</span>
+												 			</div>
           												</div>
         											</div>
       											</div>
     										</fieldset>
-    										<div class="divider"></div>
     									</form>
  									</div>
 								</center>

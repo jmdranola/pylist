@@ -11,7 +11,8 @@ from app import app
 
 #app = Flask(__name__)
 
-conn = sqlite3.connect('/home/jonaranola/mysite/pylist/app/magedb.db')
+
+
 
 @app.route('/')
 def todolist():
@@ -38,7 +39,7 @@ def add():
 
 			task =  request.form['todo'];
 			print task #check if user input reaches python
-
+			
 			try:
 				with sql.connect('/home/jonaranola/mysite/pylist/app/magedb.db') as con:
 					cur = con.cursor()
@@ -49,7 +50,7 @@ def add():
 			except:
 				con.rollback()
 	        	msg = "error in insert operation"
-
+         		
 		finally:
 			return render_template("todolist.html", msg = msg, rows=rows)
          	con.close()
@@ -83,7 +84,7 @@ def edit():
 				except:
 					con.rollback()
 		        	msg = "error in update operation"
-
+         		
 		finally:
 			return redirect("/")
 
@@ -109,7 +110,7 @@ def delete(postID):
 			except:
 				con.rollback()
 	        	msg = "error in delete operation"
-
+	     		
 		finally:
 			return redirect("/")
 
