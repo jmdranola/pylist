@@ -1,7 +1,7 @@
 # todopy
 <b>Title</b>
 <p><b>To Do List : Web Application using Python </b></p>
-<b><i>Status: Under Development</i></b>
+<b><i>Status: Complete</i></b>
 <p>Updates will be posted in the readme section.</p>
 <br>
 A simple web application of To Do List using Python.
